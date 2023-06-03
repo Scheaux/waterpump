@@ -19,6 +19,7 @@ class CreateResidentsTable extends Migration
             $table->string('fio');              // ФИО дачника
             $table->float('area');              // Площадь огорода дачника
             $table->timestampTz('start_date');  // Дата подключения дачника к водокачке
+            $table->timestamps();
         });
     }
 

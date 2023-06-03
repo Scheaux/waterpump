@@ -7,15 +7,23 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+    <v-app>
+        <v-sheet max-width="300" class="mx-auto">
+            <v-form validate-on="submit lazy" @submit.prevent="submit">
+                <v-text-field
+                    v-model="userName"
+                    :rules="rules"
+                    label="User name"
+                ></v-text-field>
 
-                    <div class="card-body">I'm an example component.</div>
-                </div>
-            </div>
-        </div>
-    </div>
+                <v-btn
+                    :loading="loading"
+                    type="submit"
+                    block
+                    class="mt-2"
+                    text="Submit"
+                ></v-btn>
+            </v-form>
+        </v-sheet>
+    </v-app>
 </template>

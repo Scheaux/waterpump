@@ -23,9 +23,10 @@ class CreateBillsTable extends Migration
             // Дачнику за период выставляется только один счёт
             $table->unique(['resident_id', 'period_id']);
             $table->foreign('resident_id')              // Внешний ключ: нельзя удалять дачника
-                  ->references('id')->on('residents');  // которому уже выставлен счёт
+                ->references('id')->on('residents');  // которому уже выставлен счёт
             $table->foreign('period_id')                // Внешний ключ: нельзя удалять период 
-                  ->references('id')->on('periods');    // по которому уже выставлен счёт
+                ->references('id')->on('periods');    // по которому уже выставлен счёт
+            $table->timestamps();
         });
     }
 
