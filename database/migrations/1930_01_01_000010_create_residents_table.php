@@ -15,10 +15,10 @@ class CreateResidentsTable extends Migration
     {
         // Дачники
         Schema::create('residents', function (Blueprint $table) {
-            $table->id();                       // ID (номер лицевого счета) дачника
-            $table->string('fio');              // ФИО дачника
-            $table->float('area');              // Площадь огорода дачника
-            $table->timestampTz('start_date');  // Дата подключения дачника к водокачке
+            $table->id();                               // ID (номер лицевого счета) дачника
+            $table->string('fio');                      // ФИО дачника
+            $table->float('area');                      // Площадь огорода дачника
+            $table->timestampTz('start_date');          // Дата подключения дачника к водокачке
             $table->timestamps();
         });
     }

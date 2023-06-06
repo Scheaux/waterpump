@@ -22,7 +22,7 @@ class PumpMeterRecordController extends Controller
     {
         $request->validate([
             'period_id' => 'required',
-            'amount_value' => 'required'
+            'amount_volume' => 'required'
         ]);
         PumpMeterRecord::create($request->all());
     }
@@ -38,8 +38,13 @@ class PumpMeterRecordController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PumpMeterRecord $pumpMeterRecord)
+    public function updateByPeriodId(Request $request)
     {
-        $pumpMeterRecord->update($request->all());
+        $request->validate([
+            'period_id' => 'required',
+            'amount_volume' => 'required'
+        ]);
+
+        PumpMeterRecord::where('period_id', $request['period_id'])->update(['amount_volume' => $request['amount_volume']]);
     }
 }

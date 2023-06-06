@@ -19,6 +19,7 @@ class CreatePeriodsTable extends Migration
             $table->timestampTz('begin_date');              // Начало периода (1 число месяца 00:00:00)
             $table->timestampTz('end_date');                // Окончание периода (последнее число месяца 23:59:59)
             $table->float('rate_rub')->default(110.50);     // Цена за кубометр воды в этом периоде
+            $table->date('date')->format('Y-m');            // Дата в формате Y-m
             $table->timestamps();
         });
         // Если при вводе показаний счетчика, в таблице periods нет записи на соответствующий месяц,

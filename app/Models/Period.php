@@ -13,25 +13,24 @@ class Period extends Model
     protected $fillable = [
         'begin_date',
         'end_date',
-        'rate_rub'
+        'rate_rub',
+        'date'
     ];
 
-    static function makeNewPeriod()
+    static function makeNewPeriods($amount)
     {
-        $period = Period::latest()->first();
-        $begin = new DateTime(date('Y-m-1'));
-        $end = new DateTime(date('Y-m-t'));
-        $end->setTime(23, 59, 59);
-        if (isset($period)) {
-            $id = $period->id;
+        $period = Period::all()->last();
+
+
+
+        for ($i = 1; $i <= $amount; $i++) {
+            $date = new DateTime();
+            $date->setTimestamp($period->begin_date);
+            $date->modify("+$i months");
             Period::create([
-                'begin_date' => $begin->modify("+$id months")->getTimestamp(),
-                'end_date' => $end->modify("+$id months")->getTimestamp()
-            ]);
-        } else {
-            Period::create([
-                'begin_date' => $begin->getTimestamp(),
-                'end_date' => $end->getTimestamp()
+                'begin_date' => $date->modify('first day of this month')->getTimestamp(),
+                'end_date' => $date->modify('last day of this month')->getTimestamp(),
+                'date' => $date->format('Y-m')
             ]);
         }
     }

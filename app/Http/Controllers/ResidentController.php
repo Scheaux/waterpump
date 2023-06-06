@@ -12,7 +12,7 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        return Resident::all();
+        return Resident::paginate(5);
     }
 
     /**
